@@ -11,7 +11,7 @@ public class HiController {
     @PostMapping("/sunshine/hi")
     public ResponseEntity<String> postHi() {
         return ResponseEntity.ok(
-                "{\"response_type\":\"in_channel\",\"text\":\"Nice\" }"
+                "{\"response_type\":\"in_channel\",\"text\":\":rainbow: :rainbow: Nice :sunny :sunny:\" }"
                 );
     }
 }
