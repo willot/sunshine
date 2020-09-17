@@ -18,7 +18,14 @@ public class HiController {
     @PostMapping("/sunshine/hay")
     public ResponseEntity<String> postMessage() {
         return ResponseEntity.ok(
-                "{\"response_type\":\"in_channel\",\"channel\":\"@vwillot\",\"text\":\":rainbow: :rainbow: Nice :sunny: :sunny:\" }"
+                "{\"response_type\":\"in_channel\",\"text\":\":rainbow: :rainbow: Nice :sunny: :sunny:\" }"
+        );
+    }
+
+    @PostMapping("/sunshine/bob")
+    public ResponseEntity<String> postMessageForYou() {
+        return ResponseEntity.ok(
+                "{\"response_type\":\"in_channel\",\"as_user\": true,\"text\":\":rainbow: :rainbow: Nice :sunny: :sunny:\" }"
         );
     }
 }
