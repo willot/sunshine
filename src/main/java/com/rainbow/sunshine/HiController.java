@@ -37,11 +37,11 @@ public class HiController {
         String[] textArray = text.split(" ");
         for (String word: textArray) {
             int index = random.nextInt(emojis.size());
-            glitterString = glitterString + " " + emojis.get(index) + word + " " +emojis.get(index);
+            glitterString = glitterString + " " + emojis.get(index) + word.toUpperCase() + " " +emojis.get(index);
         }
 
 
-        SlackResponse response = new SlackResponse("in_channel", user_name + "want to know how you are doing?" + glitterString );
+        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + user_name + " :rainbow: :sunny: " + "want to know how you are doing?" + glitterString );
         return ResponseEntity.ok(response);
     }
 
