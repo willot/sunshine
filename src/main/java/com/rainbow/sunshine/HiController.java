@@ -62,6 +62,10 @@ public class HiController {
     @PostMapping("/sunshine/spy")
     public ResponseEntity<SlackResponseEvent> postSpy(@RequestBody SlackSpyBody body) {
         List emojis = Emoji.getEmoji();
+        System.out.println("Body " + body);
+        System.out.println("Event " + body.event);
+        System.out.println("Event " + body.event.text);
+        System.out.println("Event " + body.event.channel);
 
         if (body.event.text.contains("Vianney")) {
             return ResponseEntity.ok(
