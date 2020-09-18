@@ -1,10 +1,14 @@
 package com.rainbow.sunshine;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Random;
@@ -60,7 +64,7 @@ public class HiController {
     }
 
     @PostMapping("/sunshine/spy")
-    public ResponseEntity<SlackResponseEvent> postSpy(@RequestBody SlackSpyBody body) {
+    public ResponseEntity<String> postSpy(@RequestBody SlackSpyBody body) {
         List emojis = Emoji.getEmoji();
         System.out.println("Body " + body);
         System.out.println("Event " + body.event);
@@ -69,10 +73,25 @@ public class HiController {
 
         if (body.event.text.contains("Vianney")) {
             System.out.println("contains Vianney");
-            return ResponseEntity.ok(
-                    new SlackResponseEvent(body.event.channel, body.event.text + " HI"));
+
+//            return ResponseEntity.ok(
+//                    new SlackResponseEvent(body.event.channel, body.event.text + " HI"));
         }
         return ResponseEntity.ok().build();
 //        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice to see you today!!! :sunny: :sunny: Have a great sunny day!! :sunny: :unicorn_face: :beach_with_umbrella: :pikachu_dancing:");
+    }
+
+    private static void responseToSlack(SlackSpyBody body)
+    {
+        final String uri = "http://slack.com/api/chat.postMessage?token=" + body.token+ "&channel="+ body.event.channel+
+                "&text=" +body.event.text;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.postForObject(uri, null, String.class);
+
+        System.out.println(result);
     }
 }
