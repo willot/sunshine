@@ -60,10 +60,10 @@ public class HiController {
     }
 
     @PostMapping("/sunshine/spy")
-    public ResponseEntity<SlackResponse> postSpy(@RequestBody String body) {
+    public ResponseEntity<String> postSpy(@RequestBody SlackSpyBody body) {
         List emojis = Emoji.getEmoji();
 
 //        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice to see you today!!! :sunny: :sunny: Have a great sunny day!! :sunny: :unicorn_face: :beach_with_umbrella: :pikachu_dancing:");
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(body.challenge);
     }
 }
