@@ -27,14 +27,20 @@ public class HiController {
 
         String glitterString = "";
         String[] textArray = text.split(" ");
-        for (String word: textArray) {
+        int exclamationPoints = 0;
+        for (String word : textArray) {
             int index = random.nextInt(emojis.size());
             glitterString = glitterString + " " + emojis.get(index) + " " + word.toUpperCase() + " " + emojis.get(index);
+            exclamationPoints++;
         }
 
-        glitterString = glitterString + "!!!";
+        if (exclamationPoints > 1) {
+            glitterString = glitterString + "!!!";
+        } else {
+            glitterString = "";
+        }
 
-        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + user_name.toUpperCase() + " :rainbow: :sunny: " + "want to know how you are doing?" + "\n" + glitterString );
+        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + user_name.toUpperCase() + " :rainbow: :sunny: " + "want to know how you are doing?" + "\n" + glitterString);
         return ResponseEntity.ok(response);
     }
 
@@ -44,10 +50,10 @@ public class HiController {
         List emojis = Emoji.getEmoji();
         Random random = new Random();
 
-        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " +"<@"+user_id+">"+
-                " :rainbow: :sunny: \n" + emojis.get(random.nextInt(emojis.size())) +" "+ emojis.get(random.nextInt(emojis.size())) +
-                " "+emojis.get(random.nextInt(emojis.size())) +" "+ "!!!WELCOME TO THE TEAM!!!" + emojis.get(random.nextInt(emojis.size())) +
-                " "+emojis.get(random.nextInt(emojis.size())) +" "+ emojis.get(random.nextInt(emojis.size())) +" ");
+        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + "<@" + user_id + ">" +
+                " :rainbow: :sunny: \n" + emojis.get(random.nextInt(emojis.size())) + " " + emojis.get(random.nextInt(emojis.size())) +
+                " " + emojis.get(random.nextInt(emojis.size())) + " " + "!!!WELCOME TO THE TEAM!!!" + emojis.get(random.nextInt(emojis.size())) +
+                " " + emojis.get(random.nextInt(emojis.size())) + " " + emojis.get(random.nextInt(emojis.size())) + " ");
         return ResponseEntity.ok(response);
     }
 }
