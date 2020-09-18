@@ -2,6 +2,7 @@ package com.rainbow.sunshine;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class HiController {
     }
 
     @PostMapping("/sunshine/hay")
-    public ResponseEntity<SlackResponse> postMessage(@RequestParam String text, @RequestParam String user_name) {
+    public ResponseEntity<SlackResponse> postMessage(@RequestParam String text, @RequestParam String user_id) {
         List emojis = Emoji.getEmoji();
         Random random = new Random();
 
@@ -40,7 +41,8 @@ public class HiController {
             glitterString = "";
         }
 
-        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + user_name.toUpperCase() + " :rainbow: :sunny: " + "want to know how you are doing?" + "\n" + glitterString);
+        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + "<@" + user_id + ">" + " :rainbow: :sunny: " +
+                "want to know how you are doing?" + ":rainbow: :sunny: " + "\n" + glitterString);
         return ResponseEntity.ok(response);
     }
 
@@ -55,5 +57,13 @@ public class HiController {
                 " " + emojis.get(random.nextInt(emojis.size())) + " " + "!!!WELCOME TO THE TEAM!!!" + emojis.get(random.nextInt(emojis.size())) +
                 " " + emojis.get(random.nextInt(emojis.size())) + " " + emojis.get(random.nextInt(emojis.size())) + " ");
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/sunshine/spy")
+    public ResponseEntity<SlackResponse> postSpy(@RequestBody String body) {
+        List emojis = Emoji.getEmoji();
+
+//        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice to see you today!!! :sunny: :sunny: Have a great sunny day!! :sunny: :unicorn_face: :beach_with_umbrella: :pikachu_dancing:");
+        return ResponseEntity.ok().build();
     }
 }
