@@ -25,7 +25,7 @@ public final class Emoji {
     static String fordlabs =":fordlabs:";
     static String heartRainbow =":heart-rainbow:";
     static String mando =":mando:";
-    static String parrotMoustache =":parrot-moustache:";
+    static String parrotMustache =":parrot-mustache:";
     static String pikachu =":pikachu_dancing:";
     static String mario =":mario_luigi_dance:";
     static String drum =":drum_with_drumsticks:";
@@ -58,7 +58,7 @@ public final class Emoji {
         emojis.add(fordlabs);
         emojis.add(heartRainbow);
         emojis.add(mando);
-        emojis.add(parrotMoustache);
+        emojis.add(parrotMustache);
         emojis.add(pikachu);
         emojis.add(mario);
         emojis.add(drum);
