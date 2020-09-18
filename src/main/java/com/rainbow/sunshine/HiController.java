@@ -6,13 +6,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class HiController {
 
 
     @PostMapping("/sunshine/hi")
     public ResponseEntity<SlackResponse> postHi() {
-        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice :sunny: :sunny:");
+        List emojis = Emoji.getEmoji();
+        String everything="";
+
+        for (int i = 0; i < emojis.size(); i++) {
+            everything = everything + " " + emojis.get(i);
+
+        }
+
+        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice :sunny: :sunny:" + " " + everything);
         return ResponseEntity.ok(response);
     }
 
