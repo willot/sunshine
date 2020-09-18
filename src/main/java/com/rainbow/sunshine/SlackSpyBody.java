@@ -8,6 +8,7 @@ import lombok.Data;
 public class SlackSpyBody {
 
         public String token;
-        public String challenge;
+//        public String challenge;
         public String type;
+        public EventSlack event;
 }

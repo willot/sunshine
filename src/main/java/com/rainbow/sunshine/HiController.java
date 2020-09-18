@@ -64,6 +64,6 @@ public class HiController {
         List emojis = Emoji.getEmoji();
 
 //        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice to see you today!!! :sunny: :sunny: Have a great sunny day!! :sunny: :unicorn_face: :beach_with_umbrella: :pikachu_dancing:");
-        return ResponseEntity.ok(body.challenge);
+        return ResponseEntity.ok(body.event.text + " HI");
     }
 }
