@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 public class HiController {
@@ -29,8 +30,20 @@ public class HiController {
 
     @PostMapping("/sunshine/hay")
     public ResponseEntity<SlackResponse> postMessage(@RequestParam String text, @RequestParam String user_name) {
+        List emojis = Emoji.getEmoji();
+        Random random = new Random();
 
-        SlackResponse response = new SlackResponse("in_channel", ":rainbow:" + text);
+
+
+        String glitterString = "";
+        String[] textArray = text.split(" ");
+        for (String word: textArray) {
+            int index = random.nextInt(emojis.size());
+            glitterString = glitterString + " " + emojis.get(index) + word + " " +emojis.get(index);
+        }
+
+
+        SlackResponse response = new SlackResponse("in_channel", user_name + "want to know how you are doing?" + glitterString );
         return ResponseEntity.ok(response);
     }
 
