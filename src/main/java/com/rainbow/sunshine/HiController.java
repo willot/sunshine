@@ -66,7 +66,7 @@ public class HiController {
         if (body.event.text.contains("Vianney")){
             return ResponseEntity.ok(new SlackResponse("in_channel",body.event.text + " HI"));
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new SlackResponse("in_channel",body.event.text + " HI"));
 //        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice to see you today!!! :sunny: :sunny: Have a great sunny day!! :sunny: :unicorn_face: :beach_with_umbrella: :pikachu_dancing:");
     }
 }
