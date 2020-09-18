@@ -40,11 +40,11 @@ public class HiController {
 
 
     @PostMapping("/sunshine/welcome")
-    public ResponseEntity<SlackResponse> postWelcome(@RequestParam String user_name) {
+    public ResponseEntity<SlackResponse> postWelcome(@RequestParam String user_id) {
         List emojis = Emoji.getEmoji();
         Random random = new Random();
 
-        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " +"@"+user_name.toUpperCase() +
+        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " +"<@"+user_id+">"+
                 " :rainbow: :sunny: \n" + emojis.get(random.nextInt(emojis.size())) +" "+ emojis.get(random.nextInt(emojis.size())) +
                 " "+emojis.get(random.nextInt(emojis.size())) +" "+ "!!!WELCOME TO THE TEAM!!!" + emojis.get(random.nextInt(emojis.size())) +
                 " "+emojis.get(random.nextInt(emojis.size())) +" "+ emojis.get(random.nextInt(emojis.size())) +" ");
