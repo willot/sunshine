@@ -68,6 +68,7 @@ public class HiController {
         System.out.println("Event " + body.event.channel);
 
         if (body.event.text.contains("Vianney")) {
+            System.out.println("contains Vianney");
             return ResponseEntity.ok(
                     new SlackResponseEvent(body.event.channel, body.event.text + " HI"));
         }
