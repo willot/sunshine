@@ -23,7 +23,7 @@ public class HiController {
 
         }
 
-        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice :sunny: :sunny:" + " " + everything);
+        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice to see you today!!! :sunny: :sunny: Have a great sunny day!! :sunny: :unicorn_face: :fireworks: :pikachu_dancing:" + " " + everything);
         return ResponseEntity.ok(response);
     }
 
