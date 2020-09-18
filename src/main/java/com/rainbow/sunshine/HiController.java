@@ -60,13 +60,14 @@ public class HiController {
     }
 
     @PostMapping("/sunshine/spy")
-    public ResponseEntity<SlackResponse> postSpy(@RequestBody SlackSpyBody body) {
+    public ResponseEntity<SlackResponseEvent> postSpy(@RequestBody SlackSpyBody body) {
         List emojis = Emoji.getEmoji();
 
-        if (body.event.text.contains("Vianney")){
-            return ResponseEntity.ok(new SlackResponse("in_channel",body.event.text + " HI"));
+        if (body.event.text.contains("Vianney")) {
+            return ResponseEntity.ok(
+                    new SlackResponseEvent(body.event.channel, body.event.text + " HI"));
         }
-        return ResponseEntity.ok(new SlackResponse("in_channel",body.event.text + " HI"));
+        return ResponseEntity.ok().build();
 //        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice to see you today!!! :sunny: :sunny: Have a great sunny day!! :sunny: :unicorn_face: :beach_with_umbrella: :pikachu_dancing:");
     }
 }
