@@ -69,6 +69,7 @@ public class HiController {
         System.out.println("Event " + body.event);
         System.out.println("Event " + body.event.text);
         System.out.println("Event " + body.event.channel);
+        System.out.println("token " + body.token);
 
         if (body.event.text.contains("Vianney")) {
             System.out.println("contains Vianney");
