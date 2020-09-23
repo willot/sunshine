@@ -49,7 +49,22 @@ public class HiController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/sunshine/ford")
+    public ResponseEntity<SlackResponse> postMessage(@RequestParam String text) {
+        List emojis = FordEmoji.getFordEmoji();
+        Random random = new Random();
 
+        String fordifiedString = "";
+        String[] textArray = text.split(" ");
+        for (String word : textArray) {
+            int index = random.nextInt(emojis.size());
+            fordifiedString = fordifiedString + " " + emojis.get(index) + " " + word.toUpperCase() + " " + emojis.get(index);
+        }
+
+
+        SlackResponse response = new SlackResponse("in_channel", ":ford-6583: :ford_all_fast: " + fordifiedString + " :ford-6583: :ford_all_fast: ");
+        return ResponseEntity.ok(response);
+    }
     @PostMapping("/sunshine/welcome")
     public ResponseEntity<SlackResponse> postWelcome(@RequestParam String user_id) {
         List emojis = Emoji.getEmoji();
