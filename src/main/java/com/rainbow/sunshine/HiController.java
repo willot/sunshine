@@ -45,8 +45,7 @@ public class HiController {
             glitterString = "";
         }
 
-        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + "<@" + user_id + ">" + " :rainbow: :sunny: " +
-                "want to know how you are doing?" + ":rainbow: :sunny: " + "\n" + glitterString);
+        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + glitterString + " :rainbow: :sunny: ");
         return ResponseEntity.ok(response);
     }
 
