@@ -19,7 +19,7 @@ public final class FordEmoji {
     static String clout =":clout:";
     static String focus_blue =":focus_blue:";
     static String focus_red =":focus_red:";
-    static String ms_office =":ms_office:";
+    static String ms_office =":ms-office:";
     static String fordlabs =":fordlabs:";
     static String outlook =":outlook:";
     static String sharepoint =":sharepoint:";
