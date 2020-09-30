@@ -1,5 +1,6 @@
 package com.rainbow.sunshine;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,6 +17,8 @@ import java.util.Random;
 @RestController
 public class HiController {
 
+    @Value("${bearerToken}")
+    private String bearerToken;
 
     @PostMapping("/sunshine/hi")
     public ResponseEntity<SlackResponse> postHi() {
@@ -71,9 +74,8 @@ public class HiController {
 
         if (body.event.text.contains("Vianney")) {
             System.out.println("contains Vianney");
+            responseToSlack(body);
 
-//            return ResponseEntity.ok(
-//                    new SlackResponseEvent(body.event.channel, body.event.text + " HI"));
         }
         return ResponseEntity.ok().build();
 //        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice to see you today!!! :sunny: :sunny: Have a great sunny day!! :sunny: :unicorn_face: :beach_with_umbrella: :pikachu_dancing:");
@@ -103,13 +105,17 @@ public class HiController {
         return response;
     }
 
-    private static void responseToSlack(SlackSpyBody body)
-    {
-        final String uri = "http://slack.com/api/chat.postMessage?token=" + body.token+ "&channel="+ body.event.channel+
-                "&text=" +body.event.text;
+    private void responseToSlack(SlackSpyBody body) {
+        System.out.println(body);
+        System.out.println("tok" + bearerToken);
+
+        final String uri = "http://slack.com/api/chat.postMessage?" + "channel=" + body.event.channel +
+                "&text=bobobobob";
+//                + body.event.text;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(bearerToken);
 
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.postForObject(uri, null, String.class);
