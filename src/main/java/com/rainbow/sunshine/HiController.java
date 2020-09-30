@@ -107,12 +107,13 @@ public class HiController {
 
     private void responseToSlack(SlackSpyBody body) {
         System.out.println(body);
-        System.out.println("tok" + bearerToken);
+        System.out.println("tok " + bearerToken);
 
         final String uri = "http://slack.com/api/chat.postMessage?" + "channel=" + body.event.channel +
                 "&text=bobobobob";
 //                + body.event.text;
 
+        System.out.println("url " + uri);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(bearerToken);
