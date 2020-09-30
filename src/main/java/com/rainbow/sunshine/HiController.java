@@ -117,9 +117,10 @@ public class HiController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(bearerToken);
+        HttpEntity<Object> request = new HttpEntity<>(null, headers);
 
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.postForObject(uri, null, String.class);
+        String result = restTemplate.postForObject(uri, request, String.class);
 
         System.out.println(result);
     }
