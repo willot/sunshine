@@ -27,26 +27,8 @@ public class HiController {
 
     @PostMapping("/sunshine/hay")
     public ResponseEntity<SlackResponse> postMessage(@RequestParam String text, @RequestParam String user_id) {
-        List emojis = Emoji.getEmoji();
-        Random random = new Random();
-
-        String glitterString = "";
-        String[] textArray = text.split(" ");
-        int exclamationPoints = 0;
-        for (String word : textArray) {
-            int index = random.nextInt(emojis.size());
-            glitterString = glitterString + " " + emojis.get(index) + " " + word.toUpperCase() + " " + emojis.get(index);
-            exclamationPoints++;
-        }
-
-        if (exclamationPoints > 1) {
-            glitterString = glitterString + "!!!";
-        } else {
-            glitterString = "";
-        }
-
-        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + glitterString + " :rainbow: :sunny: ");
-        return ResponseEntity.ok(response);
+        SlackResponse makeHappyString = getSlackResponse(text);
+        return ResponseEntity.ok(makeHappyString);
     }
 
     @PostMapping("/sunshine/ford")
@@ -65,6 +47,7 @@ public class HiController {
         SlackResponse response = new SlackResponse("in_channel", ":ford-6583: :ford_all_fast: " + fordifiedString + " :ford-6583: :ford_all_fast: ");
         return ResponseEntity.ok(response);
     }
+
     @PostMapping("/sunshine/welcome")
     public ResponseEntity<SlackResponse> postWelcome(@RequestParam String user_id) {
         List emojis = Emoji.getEmoji();
@@ -94,6 +77,30 @@ public class HiController {
         }
         return ResponseEntity.ok().build();
 //        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :rainbow: Nice to see you today!!! :sunny: :sunny: Have a great sunny day!! :sunny: :unicorn_face: :beach_with_umbrella: :pikachu_dancing:");
+    }
+
+    public SlackResponse getSlackResponse(String text) {
+        List emojis = Emoji.getEmoji();
+        Random random = new Random();
+
+        String glitterString = "";
+        String[] textArray = text.split(" ");
+
+        int exclamationPoints = 0;
+        for (String word : textArray) {
+            int index = random.nextInt(emojis.size());
+            glitterString = glitterString + " " + emojis.get(index) + " " + word.toUpperCase() + " " + emojis.get(index);
+            exclamationPoints++;
+        }
+
+        if (exclamationPoints >= 1) {
+            glitterString = glitterString + "!!!";
+        } else {
+            glitterString = "";
+        }
+
+        SlackResponse response = new SlackResponse("in_channel", ":rainbow: :sunny: " + glitterString + " :rainbow: :sunny: ");
+        return response;
     }
 
     private static void responseToSlack(SlackSpyBody body)
