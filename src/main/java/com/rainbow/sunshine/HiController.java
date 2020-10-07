@@ -121,7 +121,8 @@ public class HiController {
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            Object o = restTemplate.exchange(new URI(uri), HttpMethod.GET, request, Object.class);
+//            Object o = restTemplate.exchange(new URI(uri), HttpMethod.GET, request, Object.class);
+            Object o = restTemplate.postForObject(new URI(uri), request, Object.class);
             System.out.println("*********");
             System.out.println(o);
             System.out.println("#########");
