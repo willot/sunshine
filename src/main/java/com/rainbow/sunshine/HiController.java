@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Random;
 
@@ -105,7 +107,7 @@ public class HiController {
         return response;
     }
 
-    private void responseToSlack(SlackSpyBody body) {
+    private void responseToSlack(SlackSpyBody body) throws URISyntaxException {
         System.out.println(body);
         System.out.println("tok " + bearerToken);
 
@@ -120,7 +122,7 @@ public class HiController {
         HttpEntity<Object> request = new HttpEntity<>(null, headers);
 
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.postForObject(uri, request, String.class);
+        String result = restTemplate.postForObject(new URI(uri), request, String.class);
 
         System.out.println(result);
     }
