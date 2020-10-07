@@ -121,10 +121,9 @@ public class HiController {
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            ResponseEntity<Object> response = restTemplate.exchange(new URI(uri), HttpMethod.GET, request, Object.class);
+            Object o = restTemplate.exchange(new URI(uri), HttpMethod.GET, request, Object.class);
             System.out.println("*********");
-            System.out.println(response.getBody());
-            System.out.println(response);
+            System.out.println(o);
             System.out.println("#########");
         } catch (Exception e){
             System.out.println(e);
