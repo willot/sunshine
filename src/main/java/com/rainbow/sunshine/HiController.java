@@ -114,7 +114,7 @@ public class HiController {
 
         System.out.println("url " + uri);
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(bearerToken);
         HttpEntity<Object> request = new HttpEntity<>("", headers);
 
