@@ -119,7 +119,7 @@ public class HiController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(bearerToken);
-        HttpEntity<Object> request = new HttpEntity<>(null, headers);
+        HttpEntity<Object> request = new HttpEntity<>("", headers);
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.postForLocation(new URI(uri), request);
