@@ -117,15 +117,17 @@ public class HiController {
 
         System.out.println("url " + uri);
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(bearerToken);
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth("garbage");
         HttpEntity<Object> request = new HttpEntity<>("", headers);
 
         RestTemplate restTemplate = new RestTemplate();
 
         try {
             Object o = restTemplate.postForObject(new URI(uri), request, Object.class);
+            System.out.println("*********");
             System.out.println(o);
+            System.out.println("#########");
         } catch (Exception e){
             System.out.println(e);
 
