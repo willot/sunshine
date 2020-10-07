@@ -122,7 +122,14 @@ public class HiController {
         HttpEntity<Object> request = new HttpEntity<>("", headers);
 
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForLocation(new URI(uri), request);
+
+        try {
+            Object o = restTemplate.postForObject(new URI(uri), request, Object.class);
+            System.out.println(o);
+        } catch (Exception e){
+            System.out.println(e);
+
+        }
 
         System.out.println(new URI(uri));
     }
