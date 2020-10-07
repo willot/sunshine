@@ -1,10 +1,7 @@
 package com.rainbow.sunshine;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -117,14 +114,14 @@ public class HiController {
 
         System.out.println("url " + uri);
         HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(bearerToken);
         HttpEntity<Object> request = new HttpEntity<>("", headers);
 
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            Object o = restTemplate.postForObject(new URI(uri), request, Object.class);
+            Object o = restTemplate.exchange(new URI(uri), HttpMethod.GET, request, Object.class);
             System.out.println("*********");
             System.out.println(o);
             System.out.println("#########");
