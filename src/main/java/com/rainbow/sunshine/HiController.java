@@ -66,7 +66,7 @@ public class HiController {
     }
 
     @PostMapping("/sunshine/spy")
-    public ResponseEntity<String> postSpy(@RequestBody SlackSpyBody body) {
+    public ResponseEntity<String> postSpy(@RequestBody SlackSpyBody body) throws URISyntaxException {
         List emojis = Emoji.getEmoji();
         System.out.println("Body " + body);
         System.out.println("Event " + body.event);
