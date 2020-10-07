@@ -122,8 +122,8 @@ public class HiController {
         HttpEntity<Object> request = new HttpEntity<>(null, headers);
 
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.postForObject(new URI(uri), request, String.class);
+        restTemplate.postForLocation(new URI(uri), request);
 
-        System.out.println(result);
+        System.out.println(new URI(uri));
     }
 }
