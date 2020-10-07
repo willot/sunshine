@@ -108,7 +108,7 @@ public class HiController {
         System.out.println(body);
         System.out.println("tok " + bearerToken);
 
-        final String uri = "https://slack.com/api/chat.postMessage?" + "channel=" + body.event.channel +
+        final String uri = "https://slack.com/api/chat.postMessage?" + "&channel=" + body.event.channel +
                 "&text=bobobobob";
 //                + body.event.text;
 
