@@ -118,7 +118,7 @@ public class HiController {
         System.out.println("url " + uri);
         HttpHeaders headers = new HttpHeaders();
 //        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth("garbage");
+        headers.setBearerAuth(bearerToken);
         HttpEntity<Object> request = new HttpEntity<>("", headers);
 
         RestTemplate restTemplate = new RestTemplate();
