@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Random;
 
@@ -104,7 +107,7 @@ public class HiController {
         return response;
     }
 
-    private void responseToSlack(SlackSpyBody body) throws URISyntaxException {
+    private void responseToSlack(SlackSpyBody body) throws URISyntaxException, UnsupportedEncodingException {
         System.out.println(body);
         System.out.println("tok " + bearerToken);
 
@@ -113,6 +116,7 @@ public class HiController {
 //                + body.event.text;
 
         String uri = "https://slack.com/api/chat.postMessage?&channel=rainbow&text=gggg";
+        String encode = URLEncoder.encode(uri, StandardCharsets.UTF_8.toString());
         System.out.println("url " + uri);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -123,11 +127,11 @@ public class HiController {
 
         try {
 //            Object o = restTemplate.exchange(new URI(uri), HttpMethod.GET, request, Object.class);
-            Object o = restTemplate.postForObject(new URI(uri), request, Object.class);
+            Object o = restTemplate.postForObject(new URI(encode), request, Object.class);
             System.out.println("*********");
             System.out.println(o);
             System.out.println("#########");
-            Object oo = restTemplate.postForObject(uri, request, Object.class);
+            Object oo = restTemplate.postForObject(encode, request, Object.class);
             System.out.println(oo);
         } catch (Exception e){
             System.out.println(e);
