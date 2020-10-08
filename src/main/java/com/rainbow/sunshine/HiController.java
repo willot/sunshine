@@ -108,7 +108,7 @@ public class HiController {
         System.out.println(body);
         System.out.println("tok " + bearerToken);
 
-        final String uri = "https://slack.com/api/chat.postMessage?" + "channel=" + body.event.channel + "%26" +"text=bobobobob";
+        final String uri = "https://slack.com/api/chat.postMessage?" + "channel=" + body.event.channel + "%26amp" +"text=bobobobob";
 //                + body.event.text;
 
 //        String uri = "https://slack.com/api/chat.postMessage?&channel=C01AGFAU295&text=gggg";
@@ -126,6 +126,8 @@ public class HiController {
             System.out.println("*********");
             System.out.println(o);
             System.out.println("#########");
+            Object oo = restTemplate.postForObject(uri, request, Object.class);
+            System.out.println(oo);
         } catch (Exception e){
             System.out.println(e);
 
