@@ -66,7 +66,7 @@ public class HiController {
     }
 
     @PostMapping("/sunshine/spy")
-    public ResponseEntity<String> postSpy(@RequestBody SlackSpyBody body) throws URISyntaxException {
+    public ResponseEntity<String> postSpy(@RequestBody SlackSpyBody body) throws URISyntaxException, UnsupportedEncodingException {
         List emojis = Emoji.getEmoji();
         System.out.println("Body " + body);
         System.out.println("Event " + body.event);
@@ -118,6 +118,7 @@ public class HiController {
         String uri = "https://slack.com/api/chat.postMessage?&channel=rainbow&text=gggg";
         String encode = URLEncoder.encode(uri, StandardCharsets.UTF_8.toString());
         System.out.println("url " + uri);
+        System.out.println("url " + encode);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(bearerToken);
