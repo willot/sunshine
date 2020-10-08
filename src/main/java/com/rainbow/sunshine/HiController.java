@@ -108,10 +108,11 @@ public class HiController {
         System.out.println(body);
         System.out.println("tok " + bearerToken);
 
-        final String uri = "https://slack.com/api/chat.postMessage?" +"text=bobobobob" +  "&" + "channel=" + body.event.channel;
+//        final String uri = "https://slack.com/api/chat.postMessage?" +"text=bobobobob" +  "&" + "channel=" + body.event.channel;
+//        final String uri = "https://slack.com/api/chat.postMessage?text=bobobobob&channel=" + body.event.channel;
 //                + body.event.text;
 
-//        String uri = "https://slack.com/api/chat.postMessage?&channel=C01AGFAU295&text=gggg";
+        String uri = "https://slack.com/api/chat.postMessage?&channel=rainbow&text=gggg";
         System.out.println("url " + uri);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
